@@ -1,25 +1,36 @@
 CURRENT_TIME = $(shell date +'%y.%m.%d %H:%M:%S')
+BACKUPANDRESTORE_DIR=/var/www/html/extensions/BackupAndRestore
 
 build: 
-	docker build -t xlp0/mediawiki --build-arg BUILD_SMW=false .
+	docker build -t xlp0/pkcv --build-arg BUILD_SMW=false .
 buildAndPush:
-	docker build -t xlp0/semanticwiki --build-arg BUILD_SMW=false .
-	docker push xlp0/semanticwiki
-
-buildAndPushSMW: 
-	docker build -t xlp0/mediawiki.smw --build-arg BUILD_SMW=true .
-	docker push xlp0/mediawiki.smw
+	docker build -t xlp0/pkcv --build-arg BUILD_SMW=false .
+	docker push xlp0/pkcv
 
 push:
-	docker push xlp0/mediawiki
+	docker push xlp0/pkcv
 
 build_no_cache: 
-	docker build --no-cache -t xlp0/mediawiki .
+	docker build --no-cache -t xlp0/pkcv .
 
 push_no_cache: 
-	docker push xlp0/mediawiki
+	docker push xlp0/pkcv
 
 commitToGitHub:
 	git add .
 	git commit -m 'Created Makefile for the first time, and committed at ${CURRENT_TIME}'
 	git push origin main
+
+
+init:
+	./up.sh
+
+shutdown: backupNow
+	docker-compose down --volumes 
+
+removeAllImages: backupNow
+	docker-compose down --volumes 
+	docker rmi -f $(shell docker images -q)
+
+backupNow:
+	docker exec -i -t pkc_mediawiki_1 $(BACKUPANDRESTORE_DIR)/backupRegularly.sh

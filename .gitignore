@@ -1,3 +1,9 @@
 # Ignore Mac OS X tempfile
 .DS_Store
 .vscode/
+mountPoint/*
+backup/*
+shudownDockersAndRemoveImages.sh
+.DS_Store
+.vscode/
+.machine_specific_env
