@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Dibya Dutta"
-		]
-	},
-	"pgftikz-error-uploadlocal_error_overwrite": "আপল'ড ক্ৰুটি (আগৰেপৰা থকা পৃষ্ঠাত লিখাৰ অনুমোদন নাই)।",
-	"pgftikz-error-uploadlocal_error_verify": "আপল'ড ক্ৰুটি (পুনৰীক্ষিত ক্ৰুটি): $1"
-}

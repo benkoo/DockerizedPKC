@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Beta16"
-		]
-	},
-	"pgftikz-error-uploadlocal_error_overwrite": "Errore durante il caricamento (sovrascrittura di un file esistente non consentita).",
-	"pgftikz-error-uploadlocal_error_verify": "Errore durante il caricamento (errore di verifica): $1"
-}

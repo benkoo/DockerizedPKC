@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Nguyên Lê"
-		]
-	},
-	"pgftikz-error-uploadlocal_error_overwrite": "Lỗi trong khi tải lên (không được phép ghi đè lên tập tin đã tồn tại).",
-	"pgftikz-error-uploadlocal_error_verify": "Lỗi trong khi tải lên (lỗi xác nhận): $1"
-}
