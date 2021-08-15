@@ -14,7 +14,8 @@ sudo apt-get install -y \
     zip \
     unzip \
     cron \
-    dos2unix
+    dos2unix \
+    make
 
 sudo dos2unix *.sh
 
