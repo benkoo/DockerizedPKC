@@ -133,6 +133,8 @@ DB_CONTAINER=$LOWERCASE_CURRENTDIR"_database_1"
 # echo "Executing: " docker exec $MW_CONTAINER $BACKUPSCRIPTFULLPATH
 # docker exec $MW_CONTAINER $BACKUPSCRIPTFULLPATH
 # stop all docker processes
+# first check if docker-compose is installed or not, then, launch docker-compose down
+pip install docker-compose
 docker-compose down --volumes
 
 # If the mountPoint directory doesn't exist, 
