@@ -1,6 +1,6 @@
-[submodule "extensions/ExtensionDataAccounting"]
-	path = extensions/ExtensionDataAccounting
-	url = https://github.com/FantasticoFox/ExtensionDataAccounting.git
 [submodule "extensions/MW-OAuth2Client"]
 	path = extensions/MW-OAuth2Client
 	url = https://github.com/Schine/MW-OAuth2Client.git
+[submodule "extensions/ExtensionDataAccounting"]
+	path = extensions/ExtensionDataAccounting
+	url = https://github.com/FantasticoFox/ExtensionDataAccounting
