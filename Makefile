@@ -25,12 +25,10 @@ commitToGitHub:
 init:
 	./up.sh
 
-shutdown: backupNow
+shutdown:
 	docker-compose down --volumes 
 
-removeAllImages: backupNow
+removeAllImages:
 	docker-compose down --volumes 
 	docker rmi -f $(shell docker images -q)
 
-backupNow:
-	docker exec -i -t pkc_mediawiki_1 $(BACKUPANDRESTORE_DIR)/backupRegularly.sh
