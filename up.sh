@@ -43,10 +43,6 @@ if [ ! -e ./docker-compose.yml ]; then
   cp ./resources/Templates/docker-compose.yml ./docker-compose.yml
 fi
 
-# Make sure that LocalSettings.php is available in this directory, otherwise, download it.
-if [ ! -e ./mountPoint/LocalSettings.php ]; then
-  cp LocalSettings.php ./mountPoint/LocalSettings.php
-fi
 
 # In case, there is no .env file
 PORT_NUMBER="9352"
@@ -142,10 +138,7 @@ docker-compose down --volumes
 # If the mountPoint directory doesn't exist, 
 # Decompress the InitialDataPackage to ./mountPoint 
 if [ ! -e ./mountPoint/ ]; then
-
-if [ ! -e ./InitialContentPackage.tar.gz ]; then 
-  curl  https://raw.githubusercontent.com/xlp0/XLPWikiMountPoint/main/InitialContentPackage.tar.gz > temp.tar.gz
-fi
+  cp  ./resources/mountPoint.tar.gz temp.tar.gz
   tar -xzvf ./temp.tar.gz -C .
   if [ -e ./temp.tar.gz ]; then 
     rm ./temp.tar.gz
