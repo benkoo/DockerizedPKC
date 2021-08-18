@@ -1,11 +1,18 @@
 @ECHO OFF
 set w=5
 set a=C
-set b=:\Program Files\DockerC
+set b=:\Program Files\Docker
 ::set b=:\Videos
 set c=%a%%b%
 echo Try to find %c%
 set found=false
+
+if not exist ".\mountPoint" (
+    echo Try to use the default Data Package in .\resources
+    COPY .\resources\PKC_dkpg_windows.tar.gz .
+    tar -xzvf PKC_dkpg_windows.tar.gz
+    DEL PKC_dkpg_windows.tar.gz
+)
 
 for %%d in (H G F E D C ) do (
     if exist "%%d%b%" (
