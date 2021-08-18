@@ -15,7 +15,7 @@ for %%d in %l% do (
         echo Will first shutdown PKC related docker processes
         docker-compose down
         goto :checkMountPoint
-    ) 
+    )
 )
 :checkMountPoint
 if not exist ".\mountPoint" (
@@ -31,7 +31,7 @@ for %%d in %l% do (
         set found=true
         echo Will use docker-compose to launch PKC
         docker-compose up -d 
-        echo wait for a few seconds before launching the browser... 
+        echo Wait for Docker-compose to get services ready before launching the browser... 
         timeout %w% > NUL
         start http://localhost:9352
         exit
