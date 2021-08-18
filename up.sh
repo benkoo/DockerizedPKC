@@ -139,7 +139,7 @@ docker-compose down --volumes
 # If the mountPoint directory doesn't exist, 
 # Decompress the InitialDataPackage to ./mountPoint 
 if [ ! -e ./mountPoint/ ]; then
-  cp  ./resources/mountPoint.tar.gz temp.tar.gz
+  cp  ./resources/PKC_dpkg_windows.tar.gz temp.tar.gz
   tar -xzvf ./temp.tar.gz -C .
   if [ -e ./temp.tar.gz ]; then 
     rm ./temp.tar.gz

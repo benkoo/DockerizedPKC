@@ -1,4 +1,4 @@
-FROM mediawiki:1.35.2
+FROM mediawiki:1.35.3
 
 # Define the ResourceBasePath in MediaWiki as a variable name: ResourceBasePath
 ENV ResourceBasePath /var/www/html
@@ -7,9 +7,9 @@ ARG BUILD_SMW
 
 # Make sure that existing software are updated 
 RUN apt-get update 
-RUN apt-get install -y ghostscript
-RUN apt-get install -y libmagickwand-dev
-RUN apt-get install -y xpdf
+#RUN apt-get install -y ghostscript
+#RUN apt-get install -y libmagickwand-dev
+#RUN apt-get install -y xpdf
 RUN apt-get install -y xvfb
 RUN apt-get install -y cron
 RUN apt-get install -y nano
@@ -26,14 +26,14 @@ RUN chmod -R 777 ${ResourceBasePath}/images
 WORKDIR ${ResourceBasePath}/extensions
 
 RUN apt update
-RUN apt install -y nodejs npm
+#RUN apt install -y nodejs npm
 #RUN npm i npm@latest -g
 #RUN apt install -y nodejs
 #RUN apt-get update
 #RUN apt-get -y upgrade
 
 # Copy Math package to extensions/
-COPY ./extensions/Math/ ${ResourceBasePath}/extensions/Math/
+#COPY ./extensions/Math/ ${ResourceBasePath}/extensions/Math/
 
 
 # Copy MultimediaViewer package to extensions/
@@ -41,7 +41,7 @@ COPY ./extensions/MultimediaViewer/ ${ResourceBasePath}/extensions/MultimediaVie
 
 
 # Copy the BackupAndRestore scripting package to MediaWiki's "extensions/" directory
-COPY ./extensions/BackupAndRestore/ ${ResourceBasePath}/extensions/BackupAndRestore/
+#COPY ./extensions/BackupAndRestore/ ${ResourceBasePath}/extensions/BackupAndRestore/
 
 # Copy OAuth package to extensions/
 COPY ./extensions/OAuth/ ${ResourceBasePath}/extensions/OAuth/

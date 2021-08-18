@@ -2,13 +2,13 @@ CURRENT_TIME = $(shell date +'%y.%m.%d %H:%M:%S')
 BACKUPANDRESTORE_DIR=/var/www/html/extensions/BackupAndRestore
 
 build: 
-	docker build -t xlp0/pkcv --build-arg BUILD_SMW=false .
+	docker build -t xlp0/pkcv_1.35.3 --build-arg BUILD_SMW=false .
 buildAndPush:
-	docker build -t xlp0/pkcv --build-arg BUILD_SMW=false .
+	docker build -t xlp0/pkcv_1.35.3 --build-arg BUILD_SMW=false .
 	docker push xlp0/pkcv
 
 push:
-	docker push xlp0/pkcv
+	docker push xlp0/pkcv_1.35.3
 
 build_no_cache: 
 	docker build --no-cache -t xlp0/pkcv .
