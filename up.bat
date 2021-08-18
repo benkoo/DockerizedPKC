@@ -1,7 +1,7 @@
 @ECHO OFF
 set w=5
 set a=C
-set b=:\Program Files\Docker
+set b=:\Program Files\DockerC
 ::set b=:\Videos
 set c=%a%%b%
 echo Try to find %c%
@@ -26,4 +26,6 @@ for %%d in (H G F E D C ) do (
 if %found%==false (
     echo Please install Docker Desktop for Windows
     echo (You might not have it installed at the X:%b% directory)
+    echo Docker Desktop for Windows can be found here:
+    start https://www.docker.com/products/docker-desktop
 )
