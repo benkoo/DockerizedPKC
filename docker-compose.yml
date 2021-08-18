@@ -2,7 +2,7 @@
 #
 # Access via "http://localhost:8080"
 #   (or "http://$(docker-machine ip):8080" if using docker-machine)
-version: '3'
+version: '3.7'
 services:
   database:
     image: xlp0/mariadb
@@ -16,7 +16,8 @@ services:
     volumes:
       - ./mountPoint/mariadb:/var/lib/mysql
   mediawiki:
-    image: xlp0/pkcv
+    image: mediawiki
+    #image: xlp0/pkcv
     restart: always
     ports:
       - 9352:80
