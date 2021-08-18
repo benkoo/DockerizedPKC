@@ -14,9 +14,10 @@ for %%d in %l% do (
         set found=true
         echo Will first shutdown PKC related docker processes
         docker-compose down
+        goto :checkMountPoint
     ) 
 )
-
+:checkMountPoint
 if not exist ".\mountPoint" (
     echo Try to use the default Data Package in .\resources
     COPY .\resources\PKC_dkpg_windows.tar.gz .
