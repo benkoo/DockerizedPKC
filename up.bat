@@ -2,12 +2,13 @@
 set w=5
 set a=C
 set b=:\Program Files\Docker
+set l=(C D E F G H I J K L M N O P Q R S T U V W X Y Z)
 ::set b=:\Videos
 set c=%a%%b%
 echo Try to find %c%
 set found=false
 
-for %%d in (H G F E D C ) do (
+for %%d in %l% do (
     if exist "%%d%b%" (
         echo Found the file: %%d%b%
         set found=true
@@ -23,7 +24,7 @@ if not exist ".\mountPoint" (
     DEL PKC_dkpg_windows.tar.gz
 )
 
-for %%d in (H G F E D C ) do (
+for %%d in %l% do (
     if exist "%%d%b%" (
         echo Found the file: %%d%b%
         set found=true
