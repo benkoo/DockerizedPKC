@@ -7,6 +7,15 @@ set c=%a%%b%
 echo Try to find %c%
 set found=false
 
+for %%d in (H G F E D C ) do (
+    if exist "%%d%b%" (
+        echo Found the file: %%d%b%
+        set found=true
+        echo Will first shutdown PKC related docker processes
+        docker-compose down
+    ) 
+)
+
 if not exist ".\mountPoint" (
     echo Try to use the default Data Package in .\resources
     COPY .\resources\PKC_dkpg_windows.tar.gz .
@@ -19,12 +28,9 @@ for %%d in (H G F E D C ) do (
         echo Found the file: %%d%b%
         set found=true
         echo Will use docker-compose to launch PKC
-        docker-compose down
         docker-compose up -d 
-        echo %time%
         echo wait for a few seconds before launching the browser... 
         timeout %w% > NUL
-        echo %time%
         start http://localhost:9352
         exit
     ) 
