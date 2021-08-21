@@ -32,9 +32,7 @@ for %%d in %l% do (
         echo Will use docker-compose to launch PKC
         docker-compose up -d 
         echo Wait for Docker-compose to get services ready before launching the browser... 
-        timeout %w% > NUL
-        start http://localhost:9352
-        exit
+        goto :readyToLaunch
     ) 
 )
 
@@ -44,3 +42,7 @@ if %found%==false (
     echo Docker Desktop for Windows can be found here:
     start https://www.docker.com/products/docker-desktop
 )
+
+:readyToLaunch
+timeout %w% > NUL
+start http://localhost:9352
