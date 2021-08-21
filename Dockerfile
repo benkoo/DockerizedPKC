@@ -7,13 +7,14 @@ ARG BUILD_SMW
 
 # Make sure that existing software are updated 
 RUN apt-get update 
-#RUN apt-get install -y ghostscript
-#RUN apt-get install -y libmagickwand-dev
-#RUN apt-get install -y xpdf
-RUN apt-get install -y xvfb
+RUN apt-get install -y ghostscript
+RUN apt-get install -y libmagickwand-dev
+RUN apt-get install -y xpdf
+#RUN apt-get install -y xvfb
 RUN apt-get install -y cron
 RUN apt-get install -y nano
-RUN apt-get install zlibc zip unzip
+# The following line is not compatible with mediawiki:1.35.3
+#RUN apt-get install zlibc zip unzip
 RUN rm -rf /var/lib/apt/lists/*
 
 
@@ -29,8 +30,8 @@ RUN apt update
 #RUN apt install -y nodejs npm
 #RUN npm i npm@latest -g
 #RUN apt install -y nodejs
-#RUN apt-get update
-#RUN apt-get -y upgrade
+RUN apt-get update
+RUN apt-get -y upgrade
 
 # Copy Math package to extensions/
 #COPY ./extensions/Math/ ${ResourceBasePath}/extensions/Math/
@@ -80,13 +81,13 @@ COPY ./resources/mime.info ${ResourceBasePath}/includes/mime.info
 # CMD service cron start
 
 # Add crontab file in the cron directory
-ADD crontab /var/spool/cron/crontab/root
+#ADD crontab /var/spool/cron/crontab/root
 
 # Give execution rights on the cron job
-RUN chmod 0644 /var/spool/cron/crontab/root
+#RUN chmod 0644 /var/spool/cron/crontab/root
 
 # Run the cron job
-RUN crontab /var/spool/cron/crontab/root
+#RUN crontab /var/spool/cron/crontab/root
 
 # Go to the ${ResourceBasePath} for working directory
 WORKDIR ${ResourceBasePath}

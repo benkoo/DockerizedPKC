@@ -20,14 +20,14 @@ for %%d in %l% do (
 :checkMountPoint
 if not exist ".\mountPoint" (
     echo Try to use the default Data Package in .\resources
-    COPY .\resources\PKC_dkpg_windows.tar.gz .
-    tar -xzvf PKC_dkpg_windows.tar.gz
-    DEL PKC_dkpg_windows.tar.gz
+    cd .\resources
+    .\unzip mountPoint.zip -d ..\.
+    cd ..
 )
 
 for %%d in %l% do (
     if exist "%%d%b%" (
-        echo Found the file: %%d%b%
+        echo Found the file: %%d%b%, meaning that Docker should have been installed, and needs to be running in the background
         set found=true
         echo Will use docker-compose to launch PKC
         docker-compose up -d 
