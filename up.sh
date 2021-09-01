@@ -39,10 +39,9 @@ if [[ $(which docker) && $(docker --version) ]]; then
 fi
 
 # Make sure that the docker-compose.yml is available in this directory, otherwise, download it.
-if [ ! -e ./docker-compose.yml ]; then
-  cp ./resources/Templates/docker-compose.yml ./docker-compose.yml
+if [ ! -e ./mountPoint ]; then
+  tar -xzvf ./resources/mountPoint.tar.gz mountPoint
 fi
-
 
 # In case, there is no .env file
 PORT_NUMBER="9352"
@@ -133,34 +132,28 @@ DB_CONTAINER=$LOWERCASE_CURRENTDIR"_database_1"
 # echo "Executing: " docker exec $MW_CONTAINER $BACKUPSCRIPTFULLPATH
 # docker exec $MW_CONTAINER $BACKUPSCRIPTFULLPATH
 # stop all docker processes
-# first check if docker-compose is installed or not, then, launch docker-compose down
 docker-compose down --volumes
 
-# If the mountPoint directory doesn't exist, 
-# Decompress the InitialDataPackage to ./mountPoint 
-if [ ! -e ./mountPoint/ ]; then
-  cp  ./resources/PKC_dpkg_windows.tar.gz temp.tar.gz
-  tar -xzvf ./temp.tar.gz -C .
-  if [ -e ./temp.tar.gz ]; then 
-    rm ./temp.tar.gz
-  fi
-fi
 
 # Start the docker processes
 docker-compose up -d --build
-
 
 # After docker processes are ready, reload the data from earlier dump
 # echo "Loading data from earlier backups..."
 # echo "Executing: " docker exec $MW_CONTAINER $RESOTRESCRIPTFULLPATH
 # docker exec $MW_CONTAINER $RESOTRESCRIPTFULLPATH
 
-echo $MW_CONTAINER" will do regular database content dump."
-docker exec $MW_CONTAINER service cron start
+#echo $MW_CONTAINER" will do regular database content dump."
+#docker exec $MW_CONTAINER service cron start
 
 # Give read/write access to all users for the images directory.
-docker exec $MW_CONTAINER chmod -R 777 /var/www/html/images
+# docker exec $MW_CONTAINER chmod -R 777 /var/www/html/images
+
+echo "It needs to wait for at least 3 seconds before launching the php /var/www/html/maintenance/update.php script"
+sleep 3
 
 docker exec $MW_CONTAINER php /var/www/html/maintenance/update.php
 
 echo "Please go to a browser and use http://$HOST_STRING:$PORT_NUMBER to test the service"
+
+open http://$HOST_STRING:$PORT_NUMBER

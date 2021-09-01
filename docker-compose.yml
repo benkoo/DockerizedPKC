@@ -20,7 +20,7 @@ services:
     image: xlp0/pkcv
     restart: always
     ports:
-      - 9352:80
+      - ${PORT_NUMBER}:80
     links:
       - database
     volumes:
@@ -28,7 +28,7 @@ services:
       # After initial setup, download LocalSettings.php to the same directory as
       # this yaml and uncomment the following line and use compose to restart
       # the mediawiki service
-      - ./mountPoint/LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
       - ./mountPoint/backup:/var/www/html/backup
       - ./mountPoint/backup/ToBeUploaded:/var/www/html/backup/ToBeUploaded
       
