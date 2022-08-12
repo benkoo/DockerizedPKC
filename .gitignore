@@ -1,7 +1,6 @@
 # Ignore Mac OS X tempfile
 .DS_Store
 .vscode/
-mountPoint/*
 Sandbox/mountPoint/*
 backup/*
 shudownDockersAndRemoveImages.sh
